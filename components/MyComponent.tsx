@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+import Counter from "./Counter";
 import { makeStyles, Text, Button, useThemeMode } from "@rneui/themed";
 
 export default function App() {
-  const styles = useStyles();
   const [count, setCount] = useState(0);
+  const styles = useStyles();
   const { setMode, mode } = useThemeMode();
 
   const handleOnPress = () => {
     setMode(mode === "dark" ? "light" : "dark");
   };
 
-  const Click = () => {
+  const Touch = () => {
     setCount((prevCount) => ++prevCount);
   };
 
@@ -21,9 +22,10 @@ export default function App() {
       <Text style={styles.text}>
         Open up App.tsx to start working on your app!
       </Text>
-      <Button onPress={handleOnPress}>Switch Theme</Button>
-      <Text style={styles.text}>Click count: {count}</Text>
-      <Button onPress={Click}>Click</Button>
+      <Button onPress={handleOnPress} style={styles.button}>
+        Switch Theme
+      </Button>
+      <Counter/>
     </View>
   );
 }
@@ -37,5 +39,9 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     marginVertical: theme.spacing.md,
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    borderRadius: 10,
   },
 }));
